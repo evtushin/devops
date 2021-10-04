@@ -1,0 +1,24 @@
+---
+- name: install nginx
+  hosts: web
+  become: yes
+
+  tasks:
+
+  - name: Ensure nginx package is present
+    apt:
+      name: nginx
+      state: present
+
+  - name: Ensure nginx service is started
+    service:
+      name: nginx
+      state: started
+
+  - name: add a multiline string to the file and delete the string from before
+    lineinfile: dest=/var/www/html/index.html
+              insertafter='#<title>Welcome to nginx!</title>'
+              line='<p><script> document.write(new Date().toLocaleDateString()); </script></p>'
+              state=present
+              regexp='^#<title>Welcome to nginx!</title>'
+              state=absent

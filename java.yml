@@ -19,7 +19,7 @@
       repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
       dest: /tmp/maven
 
-- name: maven pkg
+- name: Maven pkg
   hosts: db
   become: yes
 
@@ -27,7 +27,7 @@
 
   - name: Execute maven
     expect:
-      command: mvn package
+      command: mvn
       chdir: /tmp/maven
       
 - name: copy
