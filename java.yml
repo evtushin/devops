@@ -27,9 +27,7 @@
 
   - name: Execute maven
     command: mvn --batch-mode --quiet install
-    args:
-      register: hello-10.war
-
+    
 - name: copy
   hosts: db
 
