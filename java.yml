@@ -26,7 +26,7 @@
   tasks:
 
   - name: Execute maven
-    command: mvn --batch-mode --quiet install
+    command: mvn package
     
 - name: copy
   hosts: db
