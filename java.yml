@@ -16,8 +16,8 @@
   tasks:
 
   - git:
-    repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-    dest: /tmp
+      repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
+      dest: /tmp
 
 - name: maven pkg
   hosts: db
