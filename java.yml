@@ -17,7 +17,7 @@
 
   - git:
       repo: 'https://github.com/boxfuse/boxfuse-sample-java-war-hello.git'
-      dest: /tmp
+      dest: /tmp/maven
 
 - name: maven pkg
   hosts: db
@@ -28,7 +28,7 @@
   - name: Execute maven
     shell: mvn package
     args:
-      chdir: tmp/boxfuse-sample-java-war-hello
+      chdir: tmp/maven/boxfuse-sample-java-war-hello
 
 - name: copy
   hosts: db
