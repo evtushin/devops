@@ -28,7 +28,7 @@
   - name: Execute maven
     shell: mvn package
     args:
-      chdir: tmp/maven/boxfuse-sample-java-war-hello
+      chdir: tmp/maven
 
 - name: copy
   hosts: db
@@ -37,7 +37,7 @@
 
   - name: Copy file from remote host to local machine
     fetch: 
-      src: /tmp/target/hello-1.0.war
+      src: /tmp/maven/target/hello-1.0.war
       dest: /tmp/boxfuse.war
 
 - name: Install tomcat  
