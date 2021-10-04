@@ -29,7 +29,7 @@
 
   - name: Ensure git clone is present
     shell: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
-      args:
+    args:
       chdir: tmp/
 
 - name: maven pkg
@@ -40,7 +40,7 @@
 
   - name: Execute maven
     shell: mvn package
-      args:
+    args:
       chdir: tmp/boxfuse-sample-java-war-hello/
 
 - name: copy
