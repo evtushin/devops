@@ -29,8 +29,7 @@
     shell: mvn package
     args:
       executable: /bin/bash
-      chdir: tmp/maven
-
+      
 - name: copy
   hosts: db
 
