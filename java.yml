@@ -1,0 +1,86 @@
+---
+- name: install maven
+  hosts: db
+  become: yes
+
+  tasks:
+
+  - name: Ensure maven package is present
+    apt:
+      name: maven
+      state: present
+
+- name: install git
+  hosts: db
+  become: yes
+
+  tasks:
+
+  - name: Ensure git package is present
+    apt:
+      name: git
+      state: present
+
+- name: git clone
+  hosts: db
+  become: yes
+
+  tasks:
+
+  - name: Ensure git clone is present
+    shell: git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+      args:
+      chdir: tmp/
+
+- name: maven pkg
+  hosts: db
+  become: yes
+
+  tasks:
+
+  - name: Execute maven
+    shell: mvn package
+      args:
+      chdir: tmp/boxfuse-sample-java-war-hello/
+
+- name: copy
+  hosts: db
+
+  tasks:
+
+  - name: Copy file from remote host to local machine
+    fetch: 
+      src: /tmp/boxfuse-sample-java-war-hello/target/hello-1.0.war
+      dest: /tmp/boxfuse.war
+
+- name: install tomcat  
+  hosts: web
+  become: yes
+
+  tasks:
+
+  - name: Ensure tomcat package is present
+    apt:
+      name: tomcat9
+      state: present
+
+- name: install jdk
+  hosts: db
+  become: yes
+
+  tasks:
+
+  - name: Ensure jdk package is present
+    apt:
+      name: default-jdk
+      state: present
+  
+ - name: Ensure boxfuse is present
+    copy:
+      src: boxfuse.war
+      dest: /var/lib/tomcat9/webapps
+
+  - name: Ensure tomcat service is started
+    service:
+      name: tomcat
+      state: started

@@ -1,0 +1,21 @@
+version: '3.9'
+services:
+  tomcat:
+    container_name: tomcat-alpine
+    image: huggla/tomcat-alpine:9.0.20-epanet_2.00.12-swmm_5.1.013-20191112
+    hostname: tomcat
+    ports:
+      - "80:8080"
+    volumes:
+      - webapp:/webapps-nobind
+  maven:
+    
+
+
+
+
+
+
+
+volumes:
+  webapp:
