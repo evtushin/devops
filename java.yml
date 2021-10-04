@@ -26,7 +26,7 @@
   tasks:
 
   - name: Execute maven
-    command: mvn package
+    command: mvn --batch-mode --quiet install
     args:
       chdir: tmp/maven
 
